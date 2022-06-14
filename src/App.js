@@ -6,28 +6,6 @@ import Document from './components/Document';
 
 function App() {
 
-  // const [ epidocXML, setEpidocXML ] = useState(false);
-  // const [ epidocElements, setEpidocElements ] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('./schemas/tei-epidoc.xml').then(resp => resp.text()).then(response => {
-  //     let parser = new DOMParser();
-  //     let xmlDoc = parser.parseFromString(response, "text/xml");
-  //     setEpidocXML(xmlDoc);
-  //   });
-  // }, []);
-  //
-  // useEffect(() => {
-  //   if(epidocXML) {
-  //     let xmlElements = {};
-  //     let rootElements = $(epidocXML).find('start > choice > ref');
-  //     let rootElementRefNames = [];
-  //     rootElements.each(function() {
-  //       rootElementRefNames.push($(this).attr('name'));
-  //     })
-  //   }
-  // }, [epidocXML]);
-
   // Each of these could have "additional info" for extra text
   const epidocSections = [{
     title : "General",

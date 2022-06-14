@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Tabs, Tab, Form, FloatingLabel, Button, Badge, Nav } from 'react-bootstrap';
 
+import XMLContainer from './XMLContainer';
 import History from './tabs/History';
 import General from './tabs/General';
 import Media from './tabs/Media';
@@ -13,17 +14,25 @@ import Commentary from './tabs/Commentary';
 function Document() {
 
   const [activeDocument, setActiveDocument] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
+  const [title, setTitle] = useState('');
 
   const createNewDocument = () => {
     setActiveDocument({
-      title : newTitle
+      title : title
     });
+  }
+
+  const editDocument = (properties) => {
+    let newDocument = JSON.parse(JSON.stringify(activeDocument));
+    for(let prop in properties) {
+      newDocument[prop] = properties[prop];
+    }
+    setActiveDocument(newDocument)
   }
 
   return (
     <Row>
-      <Col xs={8}>
+      <Col xs={9}>
         {/*
         <p>Welcome to the Epidoc builder! This is a tool meant to make it easier for you, a scholar, to create epidoc XML documents, without having to deal with all the fuss of learning XML, figuring out syntax, and more -- so you can get back to the ancient world as fast as possible.</p>
         <p>You can make an account to access documents you've already created, or make a new one by entering a title and pressing "Create".</p>
@@ -39,8 +48,8 @@ function Document() {
                   label="Document Title"
                   className="mb-3"
                 >
-                  <Form.Control onKeyUp={(e) => setNewTitle(e.target.value)} type="text" placeholder="My Ancient Document" />
-                  <Badge bg="light" text="dark" style={{float:'right'}}>This can be changed later, don't worry!</Badge>
+                  <Form.Control onKeyUp={(e) => setTitle(e.target.value)} type="text" placeholder="My Ancient Document" />
+                  <Badge bg="light" text="dark" className="label-badge">This can be changed later, don't worry!</Badge>
                 </FloatingLabel>
                 <Button variant="primary" type="submit" onClick={() => createNewDocument()}>Create</Button>
               </Form.Group>
@@ -84,28 +93,28 @@ function Document() {
                 </Col>
                 <Col sm={9}>
                   <Tab.Content>
-                    <Tab.Pane eventKey="general" title="General">
-                      <General />
+                    <Tab.Pane eventKey="general">
+                      <General title={title} editDocument={editDocument} />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="original-text" title="Text">
+                    <Tab.Pane eventKey="original-text">
                       <OriginalText />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="description" title="Description">
+                    <Tab.Pane eventKey="description">
                       <Description />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="history" title="History">
+                    <Tab.Pane eventKey="history">
                       <History />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="translation" title="Translation">
+                    <Tab.Pane eventKey="translation">
                       <Translation />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="commentary" title="Commentary">
+                    <Tab.Pane eventKey="commentary">
                       <Commentary />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="bibliography" title="Bibliography">
+                    <Tab.Pane eventKey="bibliography">
                       <Bibliography />
                     </Tab.Pane>
-                    <Tab.Pane eventKey="media" title="Media">
+                    <Tab.Pane eventKey="media">
                       <Media />
                     </Tab.Pane>
                   </Tab.Content>
@@ -115,8 +124,8 @@ function Document() {
           </div>
         : false}
       </Col>
-      <Col xs={4} className="right-col">
-        <p>What</p>
+      <Col xs={3}>
+        <XMLContainer activeDocument={activeDocument} />
       </Col>
     </Row>
   )

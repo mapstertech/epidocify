@@ -17,8 +17,36 @@ code {
   margin-bottom: 10px;
 }
 .right-col {
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   border-left: thin solid black;
 }
 
+/* general styles */
+.label-badge {
+  /* float: right; */
+  margin-bottom: 10px;
+}
+
 /* document editing */
+
+
+/* original text */
+.line-numbers {
+  user-select: none;
+  color: #aaa;
+}
+.line-numbers, .raw-text-lines {
+  margin-bottom: 3px;
+}
+#mouseover_box {
+  position: fixed;
+  background: white;
+  padding: 5px;
+  display: none;
+}
+.raw-text-lines .erased {
+  background : linear-gradient(to bottom, #DAF7A6 0%, #DAF7A6 50%, #72BCE8 51%, #72BCE8 100%  );
+  /* background-size: 80px;
+  background-image: -webkit-linear-gradient(0deg, red 20px, blue 20px, blue 40px, yellow 40px, yellow 60px, green 60px, green 80px);
+  background-image: -ms-linear-gradient(0deg, red 20px, blue 20px, blue 40px, yellow 40px, yellow 60px, green 60px, green 80px); */
+}

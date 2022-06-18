@@ -32,7 +32,7 @@ function Document() {
 
   return (
     <Row>
-      <Col xs={9}>
+      <Col xs={12}>
         {/*
         <p>Welcome to the Epidoc builder! This is a tool meant to make it easier for you, a scholar, to create epidoc XML documents, without having to deal with all the fuss of learning XML, figuring out syntax, and more -- so you can get back to the ancient world as fast as possible.</p>
         <p>You can make an account to access documents you've already created, or make a new one by entering a title and pressing "Create".</p>
@@ -63,7 +63,7 @@ function Document() {
             <hr />
             <Tab.Container defaultActiveKey="general">
               <Row>
-                <Col sm={3}>
+                <Col sm={2}>
                   <Nav variant="pills" className="flex-column">
                     <Nav.Item>
                       <Nav.Link eventKey="general">General</Nav.Link>
@@ -90,8 +90,9 @@ function Document() {
                       <Nav.Link eventKey="media">Media</Nav.Link>
                     </Nav.Item>
                   </Nav>
+                  <XMLContainer activeDocument={activeDocument} />
                 </Col>
-                <Col sm={9}>
+                <Col sm={10}>
                   <Tab.Content>
                     <Tab.Pane eventKey="general">
                       <General title={title} editDocument={editDocument} />
@@ -100,7 +101,7 @@ function Document() {
                       <OriginalText />
                     </Tab.Pane>
                     <Tab.Pane eventKey="description">
-                      <Description />
+                      <Description editDocument={editDocument} />
                     </Tab.Pane>
                     <Tab.Pane eventKey="history">
                       <History />
@@ -123,9 +124,6 @@ function Document() {
             </Tab.Container>
           </div>
         : false}
-      </Col>
-      <Col xs={3}>
-        <XMLContainer activeDocument={activeDocument} />
       </Col>
     </Row>
   )

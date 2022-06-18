@@ -10,7 +10,7 @@ function General({ editDocument, title }) {
     const [idNumber, setIdNumber] = useState('');
     const [availabilities, setAvailabilities] = useState([]);
 
-    const saveDocument = () => {
+    useEffect(() => {
       editDocument({
         title : newTitle,
         editors : editors,
@@ -18,10 +18,6 @@ function General({ editDocument, title }) {
         idNumber : idNumber,
         availabilities : availabilities
       })
-    }
-
-    useEffect(() => {
-      saveDocument()
     }, [newTitle, editors, authority, idNumber, availabilities])
 
     return (
@@ -50,7 +46,7 @@ function General({ editDocument, title }) {
             <Badge bg="light" text="dark" className="label-badge">The identifying number for this inscription in your source.</Badge>
           </FloatingLabel>
 
-          <Repeatable label="Usage Terms" description="Include information about copyright or usage terms. Include a link to term information in parentheses." array={availabilities} setArray={setAvailabilities} />
+          <Repeatable label="Usage & Copyright Terms" description="Include information about copyright or usage terms. Include a link to term information in parentheses." array={availabilities} setArray={setAvailabilities} />
 
         </Form.Group>
       </div>

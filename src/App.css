@@ -16,9 +16,10 @@ code {
   box-shadow: 2px 2px 10px #ccc;
   margin-bottom: 10px;
 }
-.right-col {
-  min-height: calc(100vh - 100px);
-  border-left: thin solid black;
+.download-container {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
 }
 
 /* general styles */
@@ -29,6 +30,13 @@ code {
 
 /* document editing */
 
+/* description */
+.text-toolbar-group .btn {
+  margin-right: 10px;
+}
+.text-toolbar-group .sub-category {
+  margin-right: 2px;
+}
 
 /* original text */
 .line-numbers {
@@ -49,4 +57,9 @@ code {
   /* background-size: 80px;
   background-image: -webkit-linear-gradient(0deg, red 20px, blue 20px, blue 40px, yellow 40px, yellow 60px, green 60px, green 80px);
   background-image: -ms-linear-gradient(0deg, red 20px, blue 20px, blue 40px, yellow 40px, yellow 60px, green 60px, green 80px); */
+}
+
+/* xml */
+.CodeMirror {
+  height: auto;
 }

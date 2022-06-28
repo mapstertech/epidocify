@@ -3,17 +3,14 @@ import { Tabs, Tab, Container, Form, Badge, Alert, Row, Col, ButtonGroup, Button
 import TextHighlighter from '../form-elements/TextHighlighter';
 import { getElements, getDefinition } from '../../utils/epidoc-utils'
 
-function Description({ editDocument }) {
+import { useXMLContext, setDescription } from '../../contexts/XMLContext';
+
+function Description() {
+    const { xml : { description }, dispatch } = useXMLContext()
 
     const [ sourceData, setSourceData ] = useState({});
     const [ layoutDescRaw, setLayoutDescRaw ] = useState('');
     const [ handDescRaw, setHandDescRaw ] = useState('');
-
-    useEffect(() => {
-      editDocument({
-        sourceData : sourceData
-      })
-    }, [sourceData])
 
     return (
       <div>
@@ -33,7 +30,7 @@ function Description({ editDocument }) {
                 "width",
                 "depth"
               ]}
-              setData={setSourceData}
+              setData={(data) => dispatch(setDescription({ sourceData : data}))}
             />
 
           </Tab>

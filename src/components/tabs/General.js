@@ -2,23 +2,10 @@ import { useEffect, useState } from 'react'
 import { Row, Col, Container, FloatingLabel, Form, Button, Badge } from 'react-bootstrap';
 import Repeatable from '../form-elements/Repeatable';
 
-function General({ editDocument, title }) {
+import { useXMLContext, setGeneral } from '../../contexts/XMLContext';
 
-    const [newTitle, setNewTitle] = useState(title);
-    const [editors, setEditors] = useState([]);
-    const [authority, setAuthority] = useState('');
-    const [idNumber, setIdNumber] = useState('');
-    const [availabilities, setAvailabilities] = useState([]);
-
-    useEffect(() => {
-      editDocument({
-        title : newTitle,
-        editors : editors,
-        authority : authority,
-        idNumber : idNumber,
-        availabilities : availabilities
-      })
-    }, [newTitle, editors, authority, idNumber, availabilities])
+function General() {
+    const { xml : { general }, dispatch } = useXMLContext()
 
     return (
       <div>
@@ -28,25 +15,29 @@ function General({ editDocument, title }) {
         <Form.Group className="mb-3">
 
           <FloatingLabel label="Document Title" className="mb-3">
-            <Form.Control value={newTitle} onChange={(e) => setNewTitle(e.target.value)} type="text" />
+            <Form.Control value={general.title} onChange={(e) => dispatch(setGeneral({ title : e.target.value}))} type="text" />
             <Badge bg="light" text="dark" className="label-badge">The title you want to give to this document.</Badge>
           </FloatingLabel>
 
-          <Repeatable label="Editor" array={editors} setArray={setEditors} />
+          <Repeatable label="Editor" array={general.editors} setArray={(editors) => dispatch(setGeneral({ editors : editors}))} />
 
           <h5>Publication Information</h5>
 
           <FloatingLabel label="Authority" className="mb-3">
-            <Form.Control value={authority} onChange={(e) => setAuthority(e.target.value)} type="text" />
+            <Form.Control value={general.authority} onChange={(e) => dispatch(setGeneral({ authority : e.target.value}))} type="text" />
             <Badge bg="light" text="dark" className="label-badge">The name of the website or main source you're using.</Badge>
           </FloatingLabel>
 
           <FloatingLabel label="ID Number" className="mb-3">
-            <Form.Control value={idNumber} onChange={(e) => setIdNumber(e.target.value)} type="text" />
+            <Form.Control value={general.idNumber} onChange={(e) => dispatch(setGeneral({ idNumber : e.target.value}))} type="text" />
             <Badge bg="light" text="dark" className="label-badge">The identifying number for this inscription in your source.</Badge>
           </FloatingLabel>
 
-          <Repeatable label="Usage & Copyright Terms" description="Include information about copyright or usage terms. Include a link to term information in parentheses." array={availabilities} setArray={setAvailabilities} />
+          <Repeatable
+            label="Usage & Copyright Terms"
+            description="Include information about copyright or usage terms. Include a link to term information in parentheses."
+            array={general.availabilities}
+            setArray={(availabilities) => dispatch(setGeneral({ availabilities : availabilities}))} />
 
         </Form.Group>
       </div>

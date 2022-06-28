@@ -11,23 +11,15 @@ import Bibliography from './tabs/Bibliography';
 import Description from './tabs/Description';
 import Commentary from './tabs/Commentary';
 
+import { useXMLContext, setGeneral } from '../contexts/XMLContext';
+
 function Document() {
 
-  const [activeDocument, setActiveDocument] = useState(false);
   const [title, setTitle] = useState('');
+  const { xml : { general }, dispatch } = useXMLContext()
 
   const createNewDocument = () => {
-    setActiveDocument({
-      title : title
-    });
-  }
-
-  const editDocument = (properties) => {
-    let newDocument = JSON.parse(JSON.stringify(activeDocument));
-    for(let prop in properties) {
-      newDocument[prop] = properties[prop];
-    }
-    setActiveDocument(newDocument)
+    dispatch(setGeneral({ title }))
   }
 
   return (
@@ -38,7 +30,7 @@ function Document() {
         <p>You can make an account to access documents you've already created, or make a new one by entering a title and pressing "Create".</p>
         */}
 
-        {!activeDocument ?
+        {general.title === '' ?
           <div>
             <Form>
               <h3>Create New Document</h3>
@@ -48,18 +40,18 @@ function Document() {
                   label="Document Title"
                   className="mb-3"
                 >
-                  <Form.Control onKeyUp={(e) => setTitle(e.target.value)} type="text" placeholder="My Ancient Document" />
+                  <Form.Control value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="My Ancient Document" />
                   <Badge bg="light" text="dark" className="label-badge">This can be changed later, don't worry!</Badge>
                 </FloatingLabel>
-                <Button variant="primary" type="submit" onClick={() => createNewDocument()}>Create</Button>
+                <Button variant="primary" onClick={() => createNewDocument()}>Create</Button>
               </Form.Group>
             </Form>
           </div>
         : false}
 
-        {activeDocument ?
+        {general.title !== '' ?
           <div>
-            <h3>{activeDocument.title}</h3>
+            <h3>{general.title}</h3>
             <hr />
             <Tab.Container defaultActiveKey="general">
               <Row>
@@ -90,18 +82,18 @@ function Document() {
                       <Nav.Link eventKey="media">Media</Nav.Link>
                     </Nav.Item>
                   </Nav>
-                  <XMLContainer activeDocument={activeDocument} />
+                  <XMLContainer />
                 </Col>
                 <Col sm={10}>
                   <Tab.Content>
                     <Tab.Pane eventKey="general">
-                      <General title={title} editDocument={editDocument} />
+                      <General />
                     </Tab.Pane>
                     <Tab.Pane eventKey="original-text">
                       <OriginalText />
                     </Tab.Pane>
                     <Tab.Pane eventKey="description">
-                      <Description editDocument={editDocument} />
+                      <Description />
                     </Tab.Pane>
                     <Tab.Pane eventKey="history">
                       <History />

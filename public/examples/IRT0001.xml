@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://epidoc.stoa.org/schema/9.3/tei-epidoc.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://epidoc.stoa.org/schema/9.3/tei-epidoc.rng" schematypens="http://purlineoclc.org/dsdl/schematron"?>
+<?xml-model href="http://epidoc.stoa.org/schema/dev/ircyr-checking.sch" schematypens="http://purlineoclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="IRT0001" xml:lang="en">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Reference to Apollo (?)</title>
+            <editor xml:id="jmr">J. M. Reynolds</editor>
+            <editor xml:id="jbwp">J. B. Ward-Perkins</editor>
+         <editor xml:id="cmr">Charlotte Roueché</editor></titleStmt>
+         <publicationStmt>
+            <publisher>Society for Libyan Studies</publisher>
+            <distributor>King’s College London</distributor>
+            <idno type="filename">IRT0001</idno>
+            <availability>
+               <p>Creative Commons licence Attribution UK 2.0 (<ref>http://creativecommons.org/licenses/by/2.0/uk/</ref>). </p>
+               <p>All reuse or distribution of this work must contain somewhere a link back to the URL <ref>http://irt.kcl.ac.uk/</ref>
+               </p>
+            </availability>
+         </publicationStmt>
+         <sourceDesc>
+            <msDesc>
+               <msIdentifier><repository>Findspot</repository></msIdentifier>
+               <physDesc>
+                  <objectDesc>
+                     <supportDesc>
+                        <support>
+                           <p>Fragment from the lower part of a small, white <material>marble</material>
+                              <objectType>panel</objectType>
+               (<dimensions>
+                                 <width unit="metre">0.09</width> 
+                                 <height unit="metre">0.14</height>
+                                 <depth unit="metre">0.02</depth>
+                              </dimensions>; no edges surviving, 
+               but there is a space after 1. 3); 
+               re-used at a later date for an inscription cut in third century capitals, of which the letters 
+               [...]<foreign xml:lang="la">TT</foreign>[...] alone survive. </p>
+                        </support>
+                     </supportDesc>
+                     <layoutDesc>
+                        <layout><rs type="execution" ref="scalpro">Inscribed</rs> on the surviving face.</layout>
+                     </layoutDesc>
+                  </objectDesc>
+                  <handDesc>
+                     <handNote>Rustic capitals: line 1, <height>0.05</height>; line 2, <height unit="metre">0.04</height>; line 3, <height unit="metre">0.03</height>. </handNote>
+                  </handDesc>
+               </physDesc>
+               <history>
+                  <origin>
+                     <origPlace>Unknown</origPlace>
+                     <origDate notBefore="0101" notAfter="0188" precision="low" evidence="lettering">Second to early third centuries CE</origDate>
+                  </origin>
+                  <provenance type="found">
+                     
+                        
+                           <p>
+                              <placeName type="ancientFindspot" ref="https://www.slsgazetteer.org/659">Sabratha</placeName>:
+                              <placeName ref="https://www.slsgazetteer.org/855">Regio I</placeName>, <placeName type="monuList" ref="https://www.slsgazetteer.org/832">Capitolium</placeName>, 
+                              found in the vaults. When excavated by Bartoccini, these vaults were found to contain a large series of
+                              architectural fragments, inscriptions, and burnt debris, deposited almost certainly when
+                              the Forum area was cleared after the disastrous sack of the city by the Austuriani,
+                              c. 363-5 (see IRT 1952, introduction). Other inscriptions in the series are:
+                              <ref type="inscription" n="IRT0003">3</ref>, <ref type="inscription" n="IRT0010">10</ref>,
+                              <ref type="inscription" n="IRT0011">11</ref>, <ref type="inscription" n="IRT0014">14</ref>, 
+                              <ref type="inscription" n="IRT0017">17</ref>, <ref type="inscription" n="IRT0019">19</ref>,
+                              <ref type="inscription" n="IRT0020">20</ref>, <ref type="inscription" n="IRT0024">24</ref>,
+                              <ref type="inscription" n="IRT0025">25</ref>, <ref type="inscription" n="IRT0026">26</ref>, <ref type="inscription" n="IRT0028">28</ref>,
+                              <ref type="inscription" n="IRT0030">30</ref>, <ref type="inscription" n="IRT0032">32</ref>,
+                              <ref type="inscription" n="IRT0034">34</ref>,<ref type="inscription" n="IRT0038">38</ref>, <ref type="inscription" n="IRT0039">39</ref>,
+                              <ref type="inscription" n="IRT0042">42</ref>, <ref type="inscription" n="IRT0044">44</ref>,
+                              <ref type="inscription" n="IRT0048">48</ref>, <ref type="inscription" n="IRT0050">50</ref>, 
+                              <ref type="inscription" n="IRT0051">51</ref>, <ref type="inscription" n="IRT0052">52</ref>,
+                              <ref type="inscription" n="IRT0054">54</ref>, <ref type="inscription" n="IRT0062">62</ref>,
+                              <ref type="inscription" n="IRT0064">64</ref>, <ref type="inscription" n="IRT0065">65</ref>, <ref type="inscription" n="IRT0066">66</ref>,
+                              <ref type="inscription" n="IRT0067">67</ref>, <ref type="inscription" n="IRT0070">70</ref>,
+                              <ref type="inscription" n="IRT0071">71</ref>, <ref type="inscription" n="IRT0073">73</ref>, <ref type="inscription" n="IRT0075">75</ref>,
+                              <ref type="inscription" n="IRT0076">76</ref>, <ref type="inscription" n="IRT0077">77</ref>,
+                              <ref type="inscription" n="IRT0082">82</ref>, <ref type="inscription" n="IRT0084">84</ref>, <ref type="inscription" n="IRT0087">87</ref>,
+                              <ref type="inscription" n="IRT0088">88</ref>, <ref type="inscription" n="IRT0092">92</ref>,
+                              <ref type="inscription" n="IRT0095">95</ref>, <ref type="inscription" n="IRT0096">96</ref>,
+                              <ref type="inscription" n="IRT0097">97</ref>, <ref type="inscription" n="IRT0099">99</ref>, 
+                              <ref type="inscription" n="IRT0113">113</ref>, <ref type="inscription" n="IRT0115">115</ref>,
+                              <ref type="inscription" n="IRT0116">116</ref>, <ref type="inscription" n="IRT0117">117</ref>,
+                              <ref type="inscription" n="IRT0128">128</ref>, <ref type="inscription" n="IRT0131">131</ref>, 
+                              <ref type="inscription" n="IRT0133">133</ref>, <ref type="inscription" n="IRT0137">137</ref>, 
+                              <ref type="inscription" n="IRT0139">139</ref>, <ref type="inscription" n="IRT0140">140</ref>,
+                              <ref type="inscription" n="IRT0141">141</ref>, <ref type="inscription" n="IRT0143">143</ref>, <ref type="inscription" n="IRT0147">147</ref>, 
+                              <ref type="inscription" n="IRT0149">149</ref>, <ref type="inscription" n="IRT0156">156</ref>,
+                              <ref type="inscription" n="IRT0160">160</ref>, <ref type="inscription" n="IRT0167">167</ref>,
+                              <ref type="inscription" n="IRT0168">168</ref>, <ref type="inscription" n="IRT0172">172</ref>, 
+                              <ref type="inscription" n="IRT0175">175</ref>, <ref type="inscription" n="IRT0190">190</ref>.</p>
+                  </provenance>
+                     <provenance type="observed">
+                           <p>Findspot</p>
+                        </provenance>
+                     
+                  
+               </history>
+            </msDesc>
+         </sourceDesc>
+      </fileDesc>
+      <encodingDesc>
+         <p>Marked-up according to the EpiDoc Guidelines version 8</p>
+      </encodingDesc>
+      <profileDesc>
+         <langUsage>
+            <language ident="ar">Arabic</language>
+            <language ident="en">English</language>
+            <language ident="fr">French</language>
+            <language ident="de">German</language>
+            <language ident="grc">Ancient Greek</language>
+            <language ident="grc-Latn">Transliterated Greek</language>
+            <language ident="el">Modern Greek</language>
+            <language ident="he">Hebrew</language>
+            <language ident="it">Italian</language>
+            <language ident="la">Latin</language>
+            <language ident="xpu">Punic</language>
+            <language ident="xpu-Latn">Neo-Punic language in Latin script</language>
+         </langUsage>
+         <textClass/>
+         <textClass>
+            <keywords scheme="IRCyr">
+               <term>
+                  <geogName type="ancientRegion" key="Tripolitania">Tripolitania</geogName>
+               </term>
+               <term>
+                  <geogName type="modernCountry" key="LY">Libya</geogName>
+               </term>
+               <term>
+                  <placeName type="modernFindspot" key="http://www.geonames.org/2212771/sabratah.html">Sabratah</placeName>
+               </term>
+            </keywords>
+         </textClass>
+         <creation>Transcription (Reynolds, Ward-Perkins)</creation>
+      </profileDesc>
+      <revisionDesc>
+         <change when="2021-02-20" who="CMR">adapted</change>
+         <change when="2010-08-18" who="GB">Converted from TEI P4 (EpiDoc DTD v. 6) to P5 (EpiDoc RNG schema v. 8)</change>
+         <change when="2008-09-09" who="ZA">converted using CHET-C</change>
+         <change when="2009-05-19" who="RV">Added Figures</change>
+         <change when="2009-08-24" who="RV">Added Figures</change>
+      </revisionDesc>
+   </teiHeader>
+   <facsimile>
+      <graphic url="wp0001.jpg">
+         <desc>From left: <ref type="inscription" n="IRT0137">137</ref>; above, <ref type="inscription" n="IRT0047">47</ref>, Unidentified; 
+         below: <ref type="inscription" n="IRT0001">1</ref>, <ref type="inscription" n="IRT0099">99</ref>: Ward-Perkins, 1948 (Ward-Perkins Archive, BSR 48.XXVII.15)</desc></graphic>
+   </facsimile>
+   <text>
+      <body>
+         
+         <div type="bibliography">
+            <p><bibl><ptr target="irt1952"/> <citedRange>1</citedRange></bibl>, whence <bibl><ptr target="irt2009"/> <citedRange><ref target="http://inslib.kcl.ac.uk/irt2009/IRT001.html">1</ref></citedRange></bibl>, whence <bibl><ptr target="EDH"/> <citedRange><ref target="https://edh-www.adw.uni-heidelberg.de/edh/inschrift/HD059004">059004</ref></citedRange></bibl>;
+                 for BSR images see <ref target="http://www.search-libnet.org/cgi-bin/koha/opac-detail.pl?biblionumber=83555">BSR Digital Collections</ref>.
+            </p>
+         </div>
+         
+         <div type="edition" xml:lang="la" xml:space="preserve">
+            <ab>
+               <lb n="1"/>
+               <gap reason="lost" extent="unknown" unit="character"/><orig>ecur</orig><gap reason="lost" extent="unknown" unit="character"/>
+               <lb n="2"/>
+               <gap reason="lost" extent="unknown" unit="character"/> 
+               <persName type="attested"><name nymRef="Apolli-"><seg part="I">Apolli<supplied reason="lost">n</supplied></seg></name></persName><gap reason="lost" extent="unknown" unit="character"/>
+               <lb n="3"/>
+               <gap reason="lost" extent="unknown" unit="character"/> 
+               <orig>inp</orig><gap reason="lost" extent="unknown" unit="character"/>
+            </ab></div>   
+            <div type="translation" resp="#jmr" xml:lang="en">
+               <p><note>Not usefully translatable</note></p></div>
+         <div type="commentary">
+            <p>There may be a reference to the god Apollo, or part of a personal name (e.g. Apollinaris).</p>
+         </div>
+      </body>
+   </text>
+</TEI>

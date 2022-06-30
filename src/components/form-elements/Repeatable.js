@@ -19,7 +19,7 @@ function Repeatable({ label, description, array, setArray }) {
                   <FloatingLabel label={label + " " + (key+1)} className="mb-3">
                     <Form.Control value={item} onChange={(e) => setItem(e.target.value, key)} type="text" />
                     {description ?
-                      <Badge bg="light" text="dark" className="label-badge">{description}</Badge> 
+                      <Badge bg="light" text="dark" className="label-badge">{description}</Badge>
                     : false}
                   </FloatingLabel>
                 </Col>
@@ -28,7 +28,7 @@ function Repeatable({ label, description, array, setArray }) {
                     let newArray = JSON.parse(JSON.stringify(array));
                     newArray.splice(key, 1);
                     setArray(newArray)
-                  }}><i class="bi bi-dash-circle"></i></Button>
+                  }}><i className="bi bi-dash-circle"></i></Button>
                 </Col>
               </Row>
             )
@@ -39,7 +39,7 @@ function Repeatable({ label, description, array, setArray }) {
               let newArray = JSON.parse(JSON.stringify(array));
               newArray.push('');
               setArray(newArray)
-            }}>Add {label} <i class="bi bi-plus-circle"></i></Button>
+            }}>Add {label} <i className="bi bi-plus-circle"></i></Button>
           </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Tabs, Tab, Form, FloatingLabel, Button, Badge, Nav } from 'react-bootstrap';
+import $ from 'jquery';
 
 import XMLContainer from './XMLContainer';
 import History from './tabs/History';
@@ -11,15 +12,52 @@ import Bibliography from './tabs/Bibliography';
 import Description from './tabs/Description';
 import Commentary from './tabs/Commentary';
 
-import { useXMLContext, setGeneral } from '../contexts/XMLContext';
+import { useXMLContext, setGeneral, setOriginalXML } from '../contexts/XMLContext';
 
 function Document() {
 
   const [title, setTitle] = useState('');
+  const [file, setFile] = useState(false);
   const { xml : { general }, dispatch } = useXMLContext()
 
   const createNewDocument = () => {
-    dispatch(setGeneral({ title }))
+    dispatch(setGeneral({ title }));
+    dispatch(setOriginalXML(`
+      <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="P42500" xml:lang="en">
+        <teiHeader>
+          <fileDesc>
+            <titleStmt>
+            </titleStmt>
+            <publicationStmt>
+            </publicationStmt>
+            <sourceDesc>
+               <msDesc>
+                  <physDesc>
+                     <objectDesc>
+                      <supportDesc>
+                      </supportDesc>
+                     </objectDesc>
+                  </physDesc>
+                </msDesc>
+            </sourceDesc>
+          </fileDesc>
+        </teiHeader>
+      </TEI>`)
+    );
+  }
+
+  const setXMLDocument = () => {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+      // console.log(evt.target.result);
+      // const title = $()
+      var parser = new DOMParser();
+      var xmlDoc = parser.parseFromString(evt.target.result, "text/xml");
+      const title = $(xmlDoc).find('title').html();
+      dispatch(setGeneral({ title }))
+      dispatch(setOriginalXML(evt.target.result))
+    }
   }
 
   return (
@@ -45,6 +83,20 @@ function Document() {
                 </FloatingLabel>
                 <Button variant="primary" onClick={() => createNewDocument()}>Create</Button>
               </Form.Group>
+            </Form>
+            <hr />
+            <Form>
+              <h3>Upload an XML Document</h3>
+              <Row>
+                <Col xs={3}>
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Control type="file" onChange={(e) => setFile(e.target.files[0])} />
+                  </Form.Group>
+                  <Button variant="secondary" onClick={() => setXMLDocument()}>Populate Site</Button>
+                </Col>
+                <Col xs={9}>
+                </Col>
+              </Row>
             </Form>
           </div>
         : false}

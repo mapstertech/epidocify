@@ -12,17 +12,22 @@ const initialState = {
   },
   description : {
     sourceData : {}
-  }
+  },
+  originalXML : ''
 }
 
 export const SET_GENERAL = 'SET_GENERAL'
 export const SET_DESCRIPTION = 'SET_DESCRIPTION'
+export const SET_ORIGINAL_XML = 'SET_ORIGINAL_XML'
 
 export function setGeneral(value) {
   return { type : 'SET_GENERAL', value }
 }
 export function setDescription(description) {
   return { type : 'SET_DESCRIPTION', description }
+}
+export function setOriginalXML(originalXML) {
+  return { type : 'SET_ORIGINAL_XML', originalXML }
 }
 
 export function xmlReducer(state, action) {
@@ -40,6 +45,11 @@ export function xmlReducer(state, action) {
       return {
         ...state,
         description : action.description
+      };
+    case SET_ORIGINAL_XML:
+      return {
+        ...state,
+        originalXML : action.originalXML
       };
     default:
       return state;

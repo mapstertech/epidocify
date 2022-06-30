@@ -51,12 +51,10 @@ export const getElements = (epidocXML, refNames) => {
 
 export const getDefinition = (epidocXML, refName) => {
   let thisDefinitionElement = $(epidocXML).find(`define[name="${refName}"]`);
-  console.log(thisDefinitionElement.children())
   const thisDefinition = {
     element : thisDefinitionElement.find('element').attr('name'),
     documentation : thisDefinitionElement.find(`a\\:documentation`).text(),
   };
-  console.log(thisDefinitionElement.find('element >').children())
   thisDefinitionElement.find('element').children().each(function() {
     if(!$(this).is(`a\\:documentation`)) {
       let nodeName = $(this).prop('nodeName');

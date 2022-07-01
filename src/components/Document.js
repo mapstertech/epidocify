@@ -13,6 +13,7 @@ import Description from './tabs/Description';
 import Commentary from './tabs/Commentary';
 
 import { useXMLContext, setGeneral, setOriginalXML } from '../contexts/XMLContext';
+import { formatTag } from '../utils/xml-utils';
 
 function Document() {
 
@@ -42,20 +43,32 @@ function Document() {
             </sourceDesc>
           </fileDesc>
         </teiHeader>
-      </TEI>`)
-    );
+      </TEI>`
+    ));
   }
 
   const setXMLDocument = () => {
     var reader = new FileReader();
     reader.readAsText(file, "UTF-8");
     reader.onload = function (evt) {
-      // console.log(evt.target.result);
-      // const title = $()
       var parser = new DOMParser();
       var xmlDoc = parser.parseFromString(evt.target.result, "text/xml");
-      const title = $(xmlDoc).find('title').html();
+      // General
+      const title = formatTag($(xmlDoc).find('title').html());
       dispatch(setGeneral({ title }))
+      const editors = [];
+      $(xmlDoc).find('editor').each(function() { editors.push(formatTag($(this).html())) });
+      dispatch(setGeneral({ editors }))
+      const authority = formatTag($(xmlDoc).find('authority').html());
+      dispatch(setGeneral({ authority }))
+      const idNumber = formatTag($(xmlDoc).find('idno[type="filename"]').html());
+      dispatch(setGeneral({ idNumber }))
+      const availabilities = [];
+      $(xmlDoc).find('availability p').each(function() { availabilities.push(
+        formatTag($(this).html()).replace(/<ref>/g, '').replace(/<\/ref>/g, '')
+      ) });
+      dispatch(setGeneral({ availabilities }))
+      // Set XML
       dispatch(setOriginalXML(evt.target.result))
     }
   }

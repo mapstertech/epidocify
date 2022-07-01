@@ -20,7 +20,7 @@ function XMLContainer() {
   useEffect(() => {
 
     var parser = new DOMParser();
-    var xmlDoc = parser.parseFromString(originalXML, "text/xml");
+    var xmlDoc = parser.parseFromString(originalXML.trim(), "text/xml");
     var xmlVars = { general, description }
 
     dataAndTags.forEach(data => {
@@ -46,7 +46,7 @@ function XMLContainer() {
           innerContent = data.formatting(actualData);
         }
         thisElement.innerHTML = innerContent;
-        if(existingElements.length.length === 0) {
+        if(existingElements.length === 0) {
           xmlDoc.getElementsByTagName(data.parent)[0].appendChild(thisElement);
         }
       }
@@ -74,7 +74,6 @@ function XMLContainer() {
     xmlString = xmlString.replace(/xmlns=""/g, "");
     xmlString = xmlString.replace(/xmlns=""/g, "");
     setXMLString(xmlString)
-    // console.log(xmlString)
   }, [general, description])
 
   return (

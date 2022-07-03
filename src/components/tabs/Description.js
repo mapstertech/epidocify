@@ -26,10 +26,11 @@ function Description() {
               highlighters={[
                 "materials",
                 "objectType",
-                "height",
-                "width",
-                "depth"
+                "dimensions"
               ]}
+              secondaryHighlighters={{
+                'dimensions' : ['height', 'width', 'depth']
+              }}
               setData={(data) => dispatch(setDescription({ sourceData : data}))}
             />
 

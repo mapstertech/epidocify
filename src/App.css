@@ -33,9 +33,43 @@ code {
 /* description */
 .text-toolbar-group .btn {
   margin-right: 10px;
+  text-transform: capitalize;
+}
+.text-toolbar-group .secondary-highlighters {
+  margin-left: -10px;
+}
+.text-toolbar-group .secondary-highlighters .btn {
+  margin-right: 0px;
+  padding: 0.15rem 0.25rem;
+  opacity: 0.5;
 }
 .text-toolbar-group .sub-category {
   margin-right: 2px;
+}
+.highlight-header button {
+  text-transform: capitalize;
+}
+.highlight-body .line-holder {
+  display: flex;
+  justify-content: space-between;
+}
+.highlight-body .line-holder i {
+  cursor: pointer;
+}
+.highlight-body height:after {
+  font-size: 50%;
+  vertical-align: top;
+  content: "height";
+}
+.highlight-body width:after {
+  font-size: 50%;
+  vertical-align: top;
+  content: "width";
+}
+.highlight-body depth:after {
+  font-size: 50%;
+  vertical-align: top;
+  content: "depth";
 }
 
 /* original text */

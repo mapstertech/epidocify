@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import $ from 'jquery';
-import { Row, Col, Container, FloatingLabel, Form, Button, Badge, ButtonGroup, Alert } from 'react-bootstrap';
+import { Row, Col, Container, FloatingLabel, Form, Button, Badge, ButtonGroup, Alert, Accordion } from 'react-bootstrap';
 
-function TextHighlighter({ placeholder, description, highlighters, setData }) {
+function TextHighlighter({ placeholder, description, highlighters, secondaryHighlighters, setData }) {
 
     const [ textRaw, setTextRaw ] = useState('');
+    const [ accordionOpen, setAccordionOpen ] = useState(false);
 
     const addHighlight = (highlightTerm) => {
       var selection = window.getSelection().getRangeAt(0);
@@ -17,9 +18,15 @@ function TextHighlighter({ placeholder, description, highlighters, setData }) {
       setData($('.highlighted-text').html().replace(/<br>/g, '\n'))
     }
 
-    // useEffect(() => {
-    //   setData($('.highlighted-text').html().replace(/<br>/g, '\n'))
-    // }, [textRaw, highlighted])
+    const removeHighlight = (highlightTerm, index) => {
+      const thisEle = $('.highlighted-text').find(highlightTerm).eq(index);
+      thisEle.children().each(function() {
+        $(this).contents().unwrap();
+      })
+      thisEle.contents().unwrap();
+
+      setData($('.highlighted-text').html().replace(/<br>/g, '\n'))
+    }
 
     return (
       <div>
@@ -30,8 +37,21 @@ function TextHighlighter({ placeholder, description, highlighters, setData }) {
                 <Row>
                   <Col>
                     <ButtonGroup className="text-toolbar-group mb-2" aria-label="Basic example">
-                      {highlighters.map(highlightTerm => {
-                        return (<Button onClick={() => addHighlight(highlightTerm)} size="sm" variant="secondary">{highlightTerm}</Button>)
+                      {highlighters.map((highlightTerm, i) => {
+                        return (
+                          <div key={`highlight-${i}`}>
+                            <Button onClick={() => addHighlight(highlightTerm)} size="sm" variant="outline-secondary">{highlightTerm}</Button>
+                            {secondaryHighlighters[highlightTerm] ?
+                              <span className="secondary-highlighters">
+                                {secondaryHighlighters[highlightTerm].map((secondaryHighlightTerm, ii) => {
+                                  return (
+                                    <Button key={`sHighlight-${ii}`} onClick={() => addHighlight(secondaryHighlightTerm)} size="sm" variant="outline-secondary">{secondaryHighlightTerm}</Button>
+                                  )
+                                })}
+                              </span>
+                            : false}
+                          </div>
+                        )
                       })}
                     </ButtonGroup>
                     <Alert variant="dark">
@@ -41,28 +61,36 @@ function TextHighlighter({ placeholder, description, highlighters, setData }) {
                 </Row>
             </Col>
             <Col sm={4}>
-
               {highlighters.length > 0 ?
-                <Alert variant="light">
-                  {highlighters.map(highlightTerm => {
+                <Accordion activeKey={accordionOpen}>
+                  {highlighters.map((highlightTerm, i) => {
                     let texts = []
                     $('.highlighted-text').find(highlightTerm).each(function() {
-                      texts.push($(this).text());
+                      texts.push($(this).html());
                     })
-                    return (
-                      <div>
-                        {texts.length > 0 ?
-                          <div>
-                            <div><strong>{highlightTerm}</strong></div>
-                            {texts.map(text => {
-                              return (<span>{text}</span>)
-                            })}
-                          </div>
-                        : false}
-                      </div>
-                    )
+                    if(texts.length > 0) {
+                      return (
+                        <Accordion.Item eventKey={i} key={`highlighted-${i}`} onClick={() => setAccordionOpen(accordionOpen === i ? false : i)}>
+                          {texts.length > 0 ?
+                            <div>
+                              <Accordion.Header className="highlight-header">{highlightTerm}</Accordion.Header>
+                              <Accordion.Body className="highlight-body">
+                                {texts.map((text, ii) => {
+                                  return (
+                                    <div className="line-holder">
+                                      <div dangerouslySetInnerHTML={{__html : text}} />
+                                      <div onClick={() => removeHighlight(highlightTerm, ii)}><i className="bi bi-dash-circle"></i></div>
+                                    </div>
+                                  )
+                                })}
+                              </Accordion.Body>
+                            </div>
+                          : false}
+                        </Accordion.Item>
+                      )
+                    }
                   })}
-                </Alert>
+                </Accordion>
               : "Highlight text and press a button to add metadata."}
             </Col>
           </Row>

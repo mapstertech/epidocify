@@ -73,17 +73,12 @@ export const getDefinition = (epidocXML, refName) => {
     }
   })
   return thisDefinition
-  // let elementTagName = thisDefinitionElement.find('element').attr('name');
-  // let elementTagName = thisDefinitionElement.find('element').attr('name');
-  // let rootElements = thisDefinitionElement.find('element > group > ref');
 }
 
 const getDefinitionChildren = (node) => {
-  // console.log(node)
   let child = {
     element : $(this).prop('nodeName')
   }
-  console.log($(this).attr('name'))
   if(typeof $(this).attr('name') !== 'undefined') {
     child.atts = $(this).attr('name')
   }

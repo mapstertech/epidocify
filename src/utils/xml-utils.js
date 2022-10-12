@@ -33,4 +33,12 @@ export const dataAndTags = [{
   data : 'description.sourceData',
   tag : 'support',
   parent : 'supportDesc'
+},{
+  data : 'description.layoutData',
+  tag : 'layout',
+  parent : 'layoutDesc'
+},{
+  data : 'description.handData',
+  tag : 'handNote',
+  parent : 'handDesc'
 }]

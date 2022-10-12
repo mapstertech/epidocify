@@ -29,6 +29,13 @@ code {
 }
 
 /* document editing */
+.sans-serif-font {
+  font-family: "Lucida Grande", "Palatino", "Gentium", "Palatino Linotype", "GentiumAlt", "Times New Roman", "Times", "Arial Unicode MS", serif;
+}
+.attr-modal .alert {
+  text-align: center;
+  font-size: 26px;
+}
 
 /* description */
 .text-toolbar-group .btn {
@@ -96,4 +103,7 @@ code {
 /* xml */
 .CodeMirror {
   height: auto;
+}
+lb {
+  display: block;
 }

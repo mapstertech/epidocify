@@ -7,6 +7,12 @@ function TextHighlighter({ placeholder, description, highlighters, secondaryHigh
     const [ textRaw, setTextRaw ] = useState('');
     const [ accordionOpen, setAccordionOpen ] = useState(false);
 
+    useEffect(() => {
+      if(textRaw !== '') {
+        setData($('.highlighted-text').html().replace(/<br>/g, '\n'))
+      }
+    }, [textRaw]);
+
     const addHighlight = (highlightTerm) => {
       var selection = window.getSelection().getRangeAt(0);
       var selectedText = selection.extractContents();
@@ -77,7 +83,7 @@ function TextHighlighter({ placeholder, description, highlighters, secondaryHigh
                               <Accordion.Body className="highlight-body">
                                 {texts.map((text, ii) => {
                                   return (
-                                    <div className="line-holder">
+                                    <div key={`line-holder-${i}-${ii}`} className="line-holder">
                                       <div dangerouslySetInnerHTML={{__html : text}} />
                                       <div onClick={() => removeHighlight(highlightTerm, ii)}><i className="bi bi-dash-circle"></i></div>
                                     </div>

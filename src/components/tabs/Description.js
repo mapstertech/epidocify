@@ -3,7 +3,7 @@ import { Tabs, Tab, Container, Form, Badge, Alert, Row, Col, ButtonGroup, Button
 import TextHighlighter from '../form-elements/TextHighlighter';
 import { getElements, getDefinition } from '../../utils/epidoc-utils'
 
-import { useXMLContext, setDescription } from '../../contexts/XMLContext';
+import { useXMLContext, setDescription, setLayout, setHand } from '../../contexts/XMLContext';
 
 function Description() {
     const { xml : { description }, dispatch } = useXMLContext()
@@ -36,12 +36,28 @@ function Description() {
 
           </Tab>
           <Tab eventKey="layout" title="Layout">
-            <Form.Control value={layoutDescRaw} as="textarea" rows={4} placeholder="Layout Description" onChange={(e) => setLayoutDescRaw(e.target.value)} />
-            <Badge bg="light" text="dark" className="label-badge">Paste the raw text for the layout description here.</Badge>
+
+            <TextHighlighter
+              description="Paste the raw text for the layout description here, then add specific tags to the content below."
+              placeholder="Layout Description"
+              highlighters={[]}
+              secondaryHighlighters={{}}
+              setData={(data) => dispatch(setDescription({ layoutData : data}))}
+            />
+
           </Tab>
           <Tab eventKey="hand" title="Hand">
-            <Form.Control value={handDescRaw} as="textarea" rows={4} placeholder="Hand Description" onChange={(e) => setHandDescRaw(e.target.value)} />
-            <Badge bg="light" text="dark" className="label-badge">Paste the raw text for the hand description here.</Badge>
+
+            <TextHighlighter
+              description="Paste the raw text for the hand description here, then add specific tags to the content below."
+              placeholder="Hand Description"
+              highlighters={[
+                'height'
+              ]}
+              secondaryHighlighters={{}}
+              setData={(data) => dispatch(setDescription({ handData : data}))}
+            />
+
           </Tab>
         </Tabs>
 

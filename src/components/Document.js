@@ -35,9 +35,13 @@ function Document() {
                <msDesc>
                   <physDesc>
                      <objectDesc>
-                      <supportDesc>
-                      </supportDesc>
+                       <supportDesc>
+                       </supportDesc>
+                       <layoutDesc>
+                       </layoutDesc>
                      </objectDesc>
+                     <handDesc>
+                     </handDesc>
                   </physDesc>
                 </msDesc>
             </sourceDesc>

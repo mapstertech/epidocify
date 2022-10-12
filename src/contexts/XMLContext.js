@@ -11,7 +11,9 @@ const initialState = {
     availabilities : []
   },
   description : {
-    sourceData : {}
+    sourceData : {},
+    layoutData : {},
+    handData : {}
   },
   originalXML : ''
 }
@@ -42,9 +44,14 @@ export function xmlReducer(state, action) {
         general : newGeneral
       };
     case SET_DESCRIPTION:
+      let newDescription = JSON.parse(JSON.stringify(state.description));
+      for(let prop in action.description) {
+        newDescription[prop] = action.description[prop];
+      }
+      console.log(newDescription)
       return {
         ...state,
-        description : action.description
+        description : newDescription
       };
     case SET_ORIGINAL_XML:
       return {
